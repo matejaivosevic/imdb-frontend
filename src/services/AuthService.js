@@ -1,9 +1,9 @@
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
-  LOGIN: '/api/auth/login',
-  REGISTER: '/api/auth/register',
-  LOGOUT: '/logout'
+  LOGIN: '/api/v1/login/',
+  REGISTER: '/api/v1/users/',
+  LOGOUT: '/logout/'
 };
 
 class AuthService extends ApiService {
@@ -49,15 +49,16 @@ class AuthService extends ApiService {
   };
 
   signup = async signupData => {
+    console.log(signupData)
     const { data } = await this.apiClient.post(ENDPOINTS.REGISTER, signupData);
 
     return data;
   };
 
   logout = async () => {
-    const { data } = await this.apiClient.post(ENDPOINTS.LOGOUT);
+    //const { data } = await this.apiClient.post(ENDPOINTS.LOGOUT);
     this.destroySession();
-    return { ok: true, data };
+    //return { ok: true, data };
   };
 
   getToken = () => {

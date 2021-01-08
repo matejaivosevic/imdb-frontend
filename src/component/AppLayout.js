@@ -1,5 +1,4 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -8,13 +7,17 @@ import Register from '../containers/auth/Register';
 import Home from '../containers/Home';
 import { authUser } from '../store/actions/AuthActions';
 
+import { ROUTES } from '../routes'
+import PrivateRoute from '../containers/PrivateRoute/PrivateRoute';
+import PublicRoute from '../containers/PublicRoute/PublicRoute';
+
 class AppLayout extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.user !== prevProps.user) {
       if (this.props.user) {
-        this.props.history.push('/home');
+        this.props.history.push(ROUTES.HOME);
       } else {
-        this.props.history.push('/login');
+        this.props.history.push(ROUTES.LOGIN);
       }
     }
   }
@@ -22,12 +25,12 @@ class AppLayout extends React.Component {
   render() {
     return this.props.user ? (
       <div>
-        <Route exact path="/home" component={Home} />
+        <PrivateRoute exact path={ROUTES.HOME} component={Home} />
       </div>
     ) : (
       <div>
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login} />
+        <PublicRoute exact path={ROUTES.REGISTER} component={Register} />
+        <PublicRoute exact path={ROUTES.LOGIN} component={Login} />
       </div>
     );
   }
