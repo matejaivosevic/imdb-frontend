@@ -1,3 +1,4 @@
+import { setLocalStorageItem } from '../utils/localStorage';
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
@@ -25,9 +26,10 @@ class AuthService extends ApiService {
 
   setAuthorizationHeader = () => {
     const token = this.getToken();
+    setLocalStorageItem('test', token)
     if (token) {
       this.api.attachHeaders({
-        Authorization: `Bearer ${token.access_token}`
+        Authorization: `Bearer ${token}`
       });
     }
   };
@@ -63,7 +65,7 @@ class AuthService extends ApiService {
 
   getToken = () => {
     const user = localStorage.getItem('user');
-    return user ? JSON.parse(user).access_token : undefined;
+    return user ? JSON.parse(user).token : undefined;
   };
 
   isAuthenticated = () => {

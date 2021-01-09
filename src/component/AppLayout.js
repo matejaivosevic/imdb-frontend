@@ -10,6 +10,7 @@ import { authUser } from '../store/actions/AuthActions';
 import { ROUTES } from '../routes'
 import PrivateRoute from '../containers/PrivateRoute/PrivateRoute';
 import PublicRoute from '../containers/PublicRoute/PublicRoute';
+import MovieList from './MovieList';
 
 class AppLayout extends React.Component {
   componentDidUpdate(prevProps) {
@@ -23,16 +24,14 @@ class AppLayout extends React.Component {
   }
 
   render() {
-    return this.props.user ? (
-      <div>
-        <PrivateRoute exact path={ROUTES.HOME} component={Home} />
-      </div>
-    ) : (
-      <div>
-        <PublicRoute exact path={ROUTES.REGISTER} component={Register} />
-        <PublicRoute exact path={ROUTES.LOGIN} component={Login} />
-      </div>
-    );
+    return (
+      <>
+      <PrivateRoute exact path={ROUTES.HOME} component={Home} />
+      <PublicRoute exact path={ROUTES.REGISTER} component={Register} />
+      <PrivateRoute exact path={ROUTES.MOVIE_LIST} component={MovieList} />
+      <PublicRoute exact path={ROUTES.LOGIN} component={Login} />
+      </>
+    )
   }
 }
 
