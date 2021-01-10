@@ -8,8 +8,7 @@ const MovieInfo = () => {
     const { movie } = useSelector(state => ({
         movie: state.movie.movie
     }))
-    let params = useParams()
-    const id = params.id
+    const { id } = useParams()
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getMovie(id))
