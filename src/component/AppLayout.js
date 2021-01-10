@@ -1,5 +1,4 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -8,28 +7,33 @@ import Register from '../containers/auth/Register';
 import Home from '../containers/Home';
 import { authUser } from '../store/actions/AuthActions';
 
+import { ROUTES } from '../routes'
+import PrivateRoute from '../containers/PrivateRoute/PrivateRoute';
+import PublicRoute from '../containers/PublicRoute/PublicRoute';
+import MovieList from './MovieList';
+import MovieInfo from './MovieInfo';
+
 class AppLayout extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.user !== prevProps.user) {
       if (this.props.user) {
-        this.props.history.push('/home');
+        this.props.history.push(ROUTES.HOME);
       } else {
-        this.props.history.push('/login');
+        this.props.history.push(ROUTES.LOGIN);
       }
     }
   }
 
   render() {
-    return this.props.user ? (
-      <div>
-        <Route exact path="/home" component={Home} />
-      </div>
-    ) : (
-      <div>
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login} />
-      </div>
-    );
+    return (
+      <>
+      <PrivateRoute exact path={ROUTES.HOME} component={Home} />
+      <PublicRoute exact path={ROUTES.REGISTER} component={Register} />
+      <PrivateRoute exact path={ROUTES.MOVIE_LIST} component={MovieList} />
+      <PublicRoute exact path={ROUTES.LOGIN} component={Login} />
+      <PrivateRoute path={`${ROUTES.MOVIE}/:id`} component={MovieInfo}/>
+      </>
+    )
   }
 }
 
