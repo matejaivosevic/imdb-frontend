@@ -11,3 +11,8 @@ export const GET_MOVIES = 'GET_MOVIES';
 export const GET_MOVIE = 'GET_MOVIE';
 export const SET_MOVIES = 'SET_MOVIES';
 export const SET_MOVIE = 'SET_MOVIE';
+export const GET_MOVIES_BY_TITLE = 'GET_MOVIES_BY_TITLE';
+
+export const LIKE_MOVIE = 'LIKE_MOVIE'
+export const LIKE_MOVIE_ON_SINGLE_PAGE = 'LIKE_MOVIE_ON_SINGLE_PAGE'
+export const SET_MOVIES_ON_LIKE = 'SET_MOVIES_ON_LIKE'
