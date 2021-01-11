@@ -24,15 +24,19 @@ const MovieList = () => {
         dispatch(getMovies(page))
     }
 
+    const searchMovies = nextValue => {
+        if(nextValue === '') {
+            dispatch(getMovies(1))
+        } else {
+            dispatch(getMoviesByTitle(1, nextValue))
+        }
+    }
+
     const handleChange = event => {
         const { value: nextValue } = event.target;
 		setValue(nextValue);
 		const debouncedSave = debounce(() => {
-            if(nextValue === '') {
-                dispatch(getMovies(1))
-            } else {
-                dispatch(getMoviesByTitle(1, nextValue))
-            }
+            searchMovies(nextValue)
         }, 750);
 		debouncedSave();
     }

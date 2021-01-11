@@ -12,7 +12,8 @@ const movieReducer = (state = initialState, action) => {
       return { ...state, movie: action.payload };
     case SET_MOVIES_ON_LIKE:
       const editedMovie = action.payload[0];
-      state.all.data[state.all.data.findIndex(movie => movie.id === editedMovie.id)] = editedMovie
+      const editedMovieIndex = state.all.data.findIndex(movie => movie.id === editedMovie.id)
+      state.all.data[editedMovieIndex] = editedMovie
       const newAll = state.all
       return { ...state, all: newAll };
     default:
