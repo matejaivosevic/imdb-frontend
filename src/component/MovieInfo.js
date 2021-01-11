@@ -50,6 +50,7 @@ const MovieInfo = () => {
                 <div className="bottom-part">
                     <i style={likedStyle} onClick={() => handleLike()} className="fa fa-thumbs-up">{movie[0].num_of_likes}</i>
                     <i style={dislikedStyle} onClick={() => handleDislike()} className="fa fa-thumbs-down">{movie[0].num_of_dislikes}</i>
+                    <i className="fa fa-eye">{movie[0].visit_count}</i>
                 </div>
             </div>
         )

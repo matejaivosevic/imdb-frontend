@@ -40,9 +40,27 @@ export function* moviesGetByTitle(payload) {
   }
 }
 
+export function* moviesGetByGenre(payload) {
+  try {
+    const { data } = yield call(movieService.getMoviesByGenre, payload.page, payload.id);
+    yield put(setMovies(data));
+  } catch (error) {
+    console.log({ error }); /*eslint-disable-line*/
+  }
+}
+
 export function* movieGet(payload) {
   try {
     const { data } = yield call(movieService.getMovie, payload.id);
+    yield put(setMovie(data));
+  } catch (error) {
+    console.log({ error }); /*eslint-disable-line*/
+  }
+}
+
+export function* movieVisit(payload) {
+  try {
+    const { data } = yield call(movieService.visitMovie, payload.id);
     yield put(setMovie(data));
   } catch (error) {
     console.log({ error }); /*eslint-disable-line*/
