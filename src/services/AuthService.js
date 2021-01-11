@@ -1,4 +1,3 @@
-import { setLocalStorageItem } from '../utils/localStorage';
 import ApiService from './ApiService';
 
 const ENDPOINTS = {

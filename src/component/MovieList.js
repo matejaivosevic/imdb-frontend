@@ -49,7 +49,7 @@ const MovieList = () => {
                 </div>
                 <div className="col">
                     {all.data && all.data.map((movie, i) => (
-                        <MovieCard movie={movie} key={i} />
+                        <MovieCard movie={movie} key={i}/>
                     ))}
                 </div>
             </div>

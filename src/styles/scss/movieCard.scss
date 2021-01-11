@@ -41,3 +41,22 @@
         }
     }
 }
+
+.bottom-part {
+    margin-top: .7rem;
+    i {
+        margin-right: 2rem;
+        cursor: pointer;
+    }
+}
+
+.fa {
+    font-size: 30px;
+    cursor: pointer;
+    user-select: none;
+    color: black;
+  }
+  
+  .fa:hover {
+    color: darkblue;
+  }

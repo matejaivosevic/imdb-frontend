@@ -17,8 +17,6 @@ const HeaderBar = ({ dispatch }) => {
     visibility: isAuthenticated ? 'visible' : 'hidden'
   }
 
-  console.log(isAuthenticated)
-
   const handleClick = () => {
     dispatch(logout())
   }

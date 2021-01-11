@@ -1,12 +1,30 @@
 import { call, put } from 'redux-saga/effects';
 
 import { movieService } from '../../services/MovieService';
-import { setMovie, setMovies } from '../actions/MovieActions';
+import { setMovie, setMovies, setMoviesOnLike } from '../actions/MovieActions';
 
 export function* moviesGet(payload) {
   try {
     const { data } = yield call(movieService.getMovies, payload.page);
     yield put(setMovies(data));
+  } catch (error) {
+    console.log({ error }); /*eslint-disable-line*/
+  }
+}
+
+export function* movieLike(payload) {
+  try {
+    const { data } = yield call(movieService.likeMovie, payload);
+    yield put(setMoviesOnLike(data));
+  } catch (error) {
+    console.log({ error }); /*eslint-disable-line*/
+  }
+}
+
+export function* movieOnSinglePageLike(payload) {
+  try {
+    const { data } = yield call(movieService.likeMovie, payload);
+    yield put(setMovie(data));
   } catch (error) {
     console.log({ error }); /*eslint-disable-line*/
   }
