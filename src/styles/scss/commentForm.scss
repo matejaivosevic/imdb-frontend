@@ -1,0 +1,52 @@
+.comment-form {
+    .inputs input {
+        padding: 10px;
+        outline: none;
+        width: 80%;
+        border: 1px solid gray;
+        border-radius: 10px;
+        background-color: rgb(242, 255, 213);
+    }
+    
+    .inputs textarea {
+        border-radius: 10px;
+        outline: none;
+        padding: 1rem;
+    }
+    
+    .inputs button {
+        padding: 10px;
+        outline: none;
+        border: none;
+        border-radius: 10px;
+        background-color: #28c;
+        color: white;
+        width: 70%;
+        margin-top: 1rem;
+    }
+    
+    .inputs button:disabled {
+        background-color: lightgray;
+    }
+
+    .center-form {
+        background-color: white;
+    }
+    
+    .inputs {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+        background-color: white;
+        border: none;
+    }
+    
+    .inputs span {
+        color: #c26;
+        margin: 5px;
+    }
+    
+    .inputs label {
+        margin-top: 2rem;
+    }
+}

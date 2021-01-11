@@ -8,6 +8,12 @@ export const LoginSchema = Yup.object().shape({
   password: Yup.string().min(6, 'You must enter 6 characters at least!').required('Password is required')
 })
 
+export const CommentSchema = Yup.object().shape({
+    content: Yup.string()
+    .max(500, 'Too Long!')
+    .required('You can not leave an empty comment...')
+})
+
 export const SignupSchema = Yup.object().shape({
   firstName: Yup.string()
     .min(2, 'Too Short!')
