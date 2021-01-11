@@ -7,6 +7,7 @@ import './App.css';
 import AppLayout from './component/AppLayout';
 import store from './store/Store';
 import './styles/css/bootstrap.min.css';
+import NavBar from './containers/NavBar';
 
 const _history = history;
 
@@ -15,6 +16,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <ConnectedRouter history={_history}>
+          <NavBar/>
           <div className="page-body">
             <AppLayout history={history} />
           </div>

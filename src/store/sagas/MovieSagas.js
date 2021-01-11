@@ -12,6 +12,16 @@ export function* moviesGet(payload) {
   }
 }
 
+export function* moviesGetByTitle(payload) {
+  console.log(payload)
+  try {
+    const { data } = yield call(movieService.getMoviesByTitle, payload.page, payload.title);
+    yield put(setMovies(data));
+  } catch (error) {
+    console.log({ error }); /*eslint-disable-line*/
+  }
+}
+
 export function* movieGet(payload) {
   try {
     const { data } = yield call(movieService.getMovie, payload.id);

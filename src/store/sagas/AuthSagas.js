@@ -10,7 +10,7 @@ export function* userLogin({ payload }) {
     yield call(AuthService.login, payload);
 
     yield put(authUser(true));
-    yield put(push(ROUTES.HOME));
+    yield put(push(ROUTES.MOVIE_LIST));
     yield put(go());
   } catch (error) {
     yield put(loginError(true));

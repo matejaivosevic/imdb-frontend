@@ -1,29 +1,26 @@
-import React, { useState } from 'react'
-import '../assets/styles/headerBar.scss'
-import { Link, useHistory } from 'react-router-dom'
+import React from 'react'
+import '../styles/scss/navBar.scss'
+import { Link } from 'react-router-dom'
 import { ROUTES } from '../routes'
-import { useSelector, connect } from 'react-redux'
-import { logoutUserAction } from '../store/actions/AuthActions'
+import { connect } from 'react-redux'
+import { logout } from '../store/actions/AuthActions'
+import authService from '../services/AuthService'
 
 const HeaderBar = ({ dispatch }) => {
-  const { isAuthenticated } = useSelector(state => ({
-    isAuthenticated: state.todoReducer.token || state.login.isAuthenticated
-  }))
-  const [isAuth, setIsAuth] = useState(!!isAuthenticated)
-  const history = useHistory()
+  const isAuthenticated = authService.isAuthenticated()
 
   const authenticatedUserButtonsVisibility = {
-    visibility: isAuth ? 'hidden' : 'visible'
+    visibility: isAuthenticated ? 'hidden' : 'visible'
   }
 
   const nonAuthenticatedButtonsVisibility = {
-    visibility: isAuth ? 'visible' : 'hidden'
+    visibility: isAuthenticated ? 'visible' : 'hidden'
   }
 
+  console.log(isAuthenticated)
+
   const handleClick = () => {
-    dispatch(logoutUserAction())
-    setIsAuth(false)
-    history.push(ROUTES.LOGIN)
+    dispatch(logout())
   }
 
   return (

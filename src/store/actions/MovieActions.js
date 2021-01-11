@@ -1,9 +1,17 @@
-import { GET_MOVIES, SET_MOVIES, GET_MOVIE, SET_MOVIE } from './ActionTypes';
+import { GET_MOVIES, SET_MOVIES, GET_MOVIE, SET_MOVIE, GET_MOVIES_BY_TITLE } from './ActionTypes';
 
 export const getMovies = (page) => {
   return {
     type: GET_MOVIES,
     page
+  };
+};
+
+export const getMoviesByTitle = (page, title) => {
+  return {
+    type: GET_MOVIES_BY_TITLE,
+    page,
+    title
   };
 };
 
