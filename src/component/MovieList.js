@@ -26,7 +26,8 @@ const MovieList = () => {
         if (value !== '') {
             dispatch(getMoviesByTitle(page, value))
         } else if (filterValue !== 'None') {
-            const genreId = all.genres[all.genres.findIndex(n => n.name === filterValue)].id
+            const genreIndex = all.genres.findIndex(n => n.name === filterValue)
+            const genreId = all.genres[genreIndex].id
             dispatch(getMoviesByGenre(page, genreId))
         } else {
             dispatch(getMovies(page))
@@ -79,8 +80,8 @@ const MovieList = () => {
                             title={filterValue}
                             id="dropdown-menu-align-right"
                         >
-                            {all.genres && all.genres.map((genre, i) => (
-                                <Dropdown.Item key={i} onClick={() => handleFilter(genre.id, genre.name)}>{genre.name}</Dropdown.Item>
+                            {all.genres && all.genres.map(genre => (
+                                <Dropdown.Item key={genre.id} onClick={() => handleFilter(genre.id, genre.name)}>{genre.name}</Dropdown.Item>
                             ))}
                             <Dropdown.Divider />
                             <Dropdown.Item onClick={() => handleClear()} style={{ color: 'red' }} eventKey="4">Clear</Dropdown.Item>
@@ -88,8 +89,8 @@ const MovieList = () => {
                     </div>
                 </div>
                 <div className="col">
-                    {all.data && all.data.map((movie, i) => (
-                        <MovieCard movie={movie} key={i} />
+                    {all.data && all.data.map(movie => (
+                        <MovieCard movie={movie} key={movie.id} />
                     ))}
                 </div>
             </div>
