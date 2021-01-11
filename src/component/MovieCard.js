@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { ROUTES } from '../routes';
-import { likeMovie } from '../store/actions/MovieActions';
+import { likeMovie, visitMovie } from '../store/actions/MovieActions';
 import '../styles/scss/movieCard.scss'
 
 const MovieCard = ({ movie }) => {
@@ -25,10 +25,15 @@ const MovieCard = ({ movie }) => {
     color: movie.current_user_disliked ? '#FFDF6C' : 'black'
   }
 
+  const handleMovieClick = () => {
+    dispatch(visitMovie(movie.id))
+    history.push(`${ROUTES.MOVIE}/${movie.id}`)
+  }
+
   return (
     <div className="movie-card col-md-7">
       <div className="movie-container">
-        <div onClick={() => history.push(`${ROUTES.MOVIE}/${movie.id}`)} className="movie-card-info row">
+        <div onClick={() => handleMovieClick()} className="movie-card-info row">
           <div className="image-section col-md-3">
             <img src={movie.image_url} alt="" />
           </div>
@@ -43,6 +48,7 @@ const MovieCard = ({ movie }) => {
         <div className="bottom-part">
           <i style={likedStyle} onClick={() => handleLike()} className="fa fa-thumbs-up">{movie.num_of_likes}</i>
           <i style={dislikedStyle} onClick={() => handleDislike()} className="fa fa-thumbs-down">{movie.num_of_dislikes}</i>
+          <i className="fa fa-eye">{movie.visit_count}</i>
         </div>
       </div>
     </div>

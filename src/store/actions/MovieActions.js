@@ -1,4 +1,4 @@
-import { GET_MOVIES, SET_MOVIES, GET_MOVIE, SET_MOVIE, GET_MOVIES_BY_TITLE, LIKE_MOVIE, LIKE_MOVIE_ON_SINGLE_PAGE, SET_MOVIES_ON_LIKE } from './ActionTypes';
+import { GET_MOVIES, SET_MOVIES, GET_MOVIE, SET_MOVIE, GET_MOVIES_BY_TITLE, LIKE_MOVIE, LIKE_MOVIE_ON_SINGLE_PAGE, SET_MOVIES_ON_LIKE, GET_MOVIES_BY_GENRE, VISIT_MOVIE } from './ActionTypes';
 
 export const getMovies = (page) => {
   return {
@@ -7,11 +7,26 @@ export const getMovies = (page) => {
   };
 };
 
+export const visitMovie = (id) => {
+  return {
+    type: VISIT_MOVIE,
+    id
+  };
+};
+
 export const getMoviesByTitle = (page, title) => {
   return {
     type: GET_MOVIES_BY_TITLE,
     page,
     title
+  };
+};
+
+export const getMoviesByGenre = (page, id) => {
+  return {
+    type: GET_MOVIES_BY_GENRE,
+    page,
+    id
   };
 };
 
