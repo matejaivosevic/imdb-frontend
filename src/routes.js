@@ -4,5 +4,6 @@ export const ROUTES = {
     LOGIN: '/login',
     MOVIE_LIST: '/movie-list',
     MOVIE: '/movie',
-    WATCH_LIST: '/watch-list'
+    WATCH_LIST: '/watch-list',
+    CREATE_MOVIE: '/create-movie'
 }

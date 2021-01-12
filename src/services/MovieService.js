@@ -11,12 +11,19 @@ const ENDPOINTS = {
   CREATE_COMMENT: '/api/v1/create-comment',
   WATCH: '/api/v1/watch',
   WATCH_LIST: '/api/v1/watch-list',
-  POPULAR: '/api/v1/popular'
+  POPULAR: '/api/v1/popular',
+  RELATED: '/api/v1/related',
+  CREATE_MOVIE: '/api/v1/create-movie',
+  GENRES: '/api/v1/genres'
 };
 
 class MovieService extends ApiService {
   getMovies = (page) => {
     return this.apiClient.get(`${ENDPOINTS.MOVIES}?page=${page}`);
+  };
+
+  createMovie = (payload) => {
+    return this.apiClient.post(`${ENDPOINTS.CREATE_MOVIE}`, payload);
   };
 
   getMoviesByTitle = (page, title) => {
@@ -57,6 +64,14 @@ class MovieService extends ApiService {
 
   getPopular = () => {
     return this.apiClient.get(`${ENDPOINTS.POPULAR}`);
+  };
+
+  getRelated = (id) => {
+    return this.apiClient.get(`${ENDPOINTS.RELATED}?id=${id}`);
+  };
+
+  getGenres = () => {
+    return this.apiClient.get(`${ENDPOINTS.GENRES}`);
   };
 }
 

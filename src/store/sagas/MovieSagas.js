@@ -1,7 +1,9 @@
 import { call, put } from 'redux-saga/effects';
+import { push, go } from 'connected-react-router';
 
 import { movieService } from '../../services/MovieService';
-import { setAllComments, setComment, setMovie, setMovieAfterAddToList, setMovies, setMoviesAfterAddToList, setMoviesOnLike, setPopular, setSignleMovieOnLike, setWatchList } from '../actions/MovieActions';
+import { setAllComments, setComment, setGenres, setMovie, setMovieAfterAddToList, setMovies, setMoviesAfterAddToList, setMoviesOnLike, setPopular, setRelated, setSignleMovieOnLike, setWatchList } from '../actions/MovieActions';
+import { ROUTES } from '../../routes';
 
 export function* moviesGet(payload) {
   try {
@@ -30,10 +32,39 @@ export function* popularGet() {
   }
 }
 
+export function* relatedGet(payload) {
+  try {
+    const { data } = yield call(movieService.getRelated, payload.payload);
+    yield put(setRelated(data));
+  } catch (error) {
+    console.log({ error }); /*eslint-disable-line*/
+  }
+}
+
+export function* genresGet() {
+  try {
+    const { data } = yield call(movieService.getGenres);
+    yield put(setGenres(data));
+  } catch (error) {
+    console.log({ error }); /*eslint-disable-line*/
+  }
+}
+
 export function* movieLike(payload) {
   try {
     const { data } = yield call(movieService.likeMovie, payload);
     yield put(setMoviesOnLike(data));
+  } catch (error) {
+    console.log({ error }); /*eslint-disable-line*/
+  }
+}
+
+export function* movieCreate(payload) {
+  try {
+    console.log(payload)
+    yield call(movieService.createMovie, payload.payload);
+    yield put(push(ROUTES.MOVIE_LIST));
+    yield put(go());
   } catch (error) {
     console.log({ error }); /*eslint-disable-line*/
   }

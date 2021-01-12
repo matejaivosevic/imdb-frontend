@@ -1,4 +1,4 @@
-import { SET_MOVIES, SET_MOVIE, SET_MOVIES_ON_LIKE, SET_SINGLE_MOVIE_ON_LIKE, SET_COMMENT, SET_ALL_COMMENTS, SET_MOVIE_AFTER_ADD_TO_LIST, SET_MOVIES_AFTER_ADD_TO_LIST, SET_WATCH_LIST } from '../actions/ActionTypes';
+import { SET_MOVIES, SET_MOVIE, SET_MOVIES_ON_LIKE, SET_SINGLE_MOVIE_ON_LIKE, SET_COMMENT, SET_ALL_COMMENTS, SET_MOVIE_AFTER_ADD_TO_LIST, SET_MOVIES_AFTER_ADD_TO_LIST, SET_WATCH_LIST, SET_RELATED, SET_GENRES } from '../actions/ActionTypes';
 
 const initialState = {
   all: []
@@ -7,10 +7,14 @@ const movieReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_MOVIES:
       return { ...state, all: action.payload };
+    case SET_GENRES:
+      return { ...state, genres: action.payload };
     case SET_WATCH_LIST:
       return { ...state, all: action.payload, list: action.payload };
     case SET_MOVIE:
       return { ...state, movie: action.payload };
+    case SET_RELATED:
+      return { ...state, movie: state.movie, related: action.payload };
     case SET_MOVIES_ON_LIKE:
       const editedMovie = action.payload[0];
       const editedMovieIndex = state.all.data.findIndex(movie => movie.id === editedMovie.id)

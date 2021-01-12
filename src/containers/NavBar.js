@@ -30,6 +30,7 @@ const HeaderBar = ({ dispatch }) => {
                 <div style={nonAuthenticatedButtonsVisibility} className="row">
                     <span onClick={() => history.push(ROUTES.MOVIE_LIST)}>IMDB</span>
                     <span onClick={() => history.push(ROUTES.WATCH_LIST)}>Watch list</span>
+                    <span onClick={() => history.push(ROUTES.CREATE_MOVIE)}>Create Movie</span>
                 </div>
             </div>
             <div className="col-md-4 col-lg-4 col-sm-4">
