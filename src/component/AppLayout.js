@@ -12,6 +12,7 @@ import PrivateRoute from '../containers/PrivateRoute/PrivateRoute';
 import PublicRoute from '../containers/PublicRoute/PublicRoute';
 import MovieList from './MovieList';
 import MovieInfo from './MovieInfo';
+import WatchList from './WatchList';
 
 class AppLayout extends React.Component {
   componentDidUpdate(prevProps) {
@@ -32,6 +33,7 @@ class AppLayout extends React.Component {
       <PrivateRoute exact path={ROUTES.MOVIE_LIST} component={MovieList} />
       <PublicRoute exact path={ROUTES.LOGIN} component={Login} />
       <PrivateRoute path={`${ROUTES.MOVIE}/:id`} component={MovieInfo}/>
+      <PrivateRoute path={`${ROUTES.WATCH_LIST}`} component={WatchList}/>
       </>
     )
   }

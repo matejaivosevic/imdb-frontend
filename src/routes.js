@@ -3,5 +3,6 @@ export const ROUTES = {
     REGISTER: '/register',
     LOGIN: '/login',
     MOVIE_LIST: '/movie-list',
-    MOVIE: '/movie'
+    MOVIE: '/movie',
+    WATCH_LIST: '/watch-list'
 }

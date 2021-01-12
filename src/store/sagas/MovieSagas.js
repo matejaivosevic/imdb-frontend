@@ -1,7 +1,7 @@
 import { call, put } from 'redux-saga/effects';
 
 import { movieService } from '../../services/MovieService';
-import { setAllComments, setComment, setMovie, setMovies, setMoviesOnLike, setSignleMovieOnLike } from '../actions/MovieActions';
+import { setAllComments, setComment, setMovie, setMovieAfterAddToList, setMovies, setMoviesAfterAddToList, setMoviesOnLike, setPopular, setSignleMovieOnLike, setWatchList } from '../actions/MovieActions';
 
 export function* moviesGet(payload) {
   try {
@@ -12,10 +12,46 @@ export function* moviesGet(payload) {
   }
 }
 
+export function* watchListGet() {
+  try {
+    const { data } = yield call(movieService.getWatchList);
+    yield put(setWatchList(data));
+  } catch (error) {
+    console.log({ error }); /*eslint-disable-line*/
+  }
+}
+
+export function* popularGet() {
+  try {
+    const { data } = yield call(movieService.getPopular);
+    yield put(setPopular(data));
+  } catch (error) {
+    console.log({ error }); /*eslint-disable-line*/
+  }
+}
+
 export function* movieLike(payload) {
   try {
     const { data } = yield call(movieService.likeMovie, payload);
     yield put(setMoviesOnLike(data));
+  } catch (error) {
+    console.log({ error }); /*eslint-disable-line*/
+  }
+}
+
+export function* addToWatchListSinglePage(payload) {
+  try {
+    const { data } = yield call(movieService.watch, payload);
+    yield put(setMovieAfterAddToList(data));
+  } catch (error) {
+    console.log({ error }); /*eslint-disable-line*/
+  }
+}
+
+export function* addToWatchList(payload) {
+  try {
+    const { data } = yield call(movieService.watch, payload);
+    yield put(setMoviesAfterAddToList(data));
   } catch (error) {
     console.log({ error }); /*eslint-disable-line*/
   }

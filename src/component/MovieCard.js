@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { ROUTES } from '../routes';
-import { likeMovie, visitMovie } from '../store/actions/MovieActions';
+import { addToWatchList, likeMovie, visitMovie } from '../store/actions/MovieActions';
 import '../styles/scss/movieCard.scss'
 
 const MovieCard = ({ movie }) => {
@@ -30,8 +30,17 @@ const MovieCard = ({ movie }) => {
     history.push(`${ROUTES.MOVIE}/${movie.id}`)
   }
 
+  const watchListFlagStyle = {
+    color: movie.is_in_watch_list ? 'red' : 'black',
+    float: 'right'
+  }
+
+  const handleAddToWatchList = () => {
+    dispatch(addToWatchList({movie_id: movie.id}))
+}
+
   return (
-    <div className="movie-card col-md-7">
+    <div className="movie-card col-md-12">
       <div className="movie-container">
         <div onClick={() => handleMovieClick()} className="movie-card-info row">
           <div className="image-section col-md-3">
@@ -45,10 +54,11 @@ const MovieCard = ({ movie }) => {
         </span>
           </div>
         </div>
-        <div className="bottom-part">
-          <i style={likedStyle} onClick={() => handleLike()} className="fa fa-thumbs-up">{movie.num_of_likes}</i>
-          <i style={dislikedStyle} onClick={() => handleDislike()} className="fa fa-thumbs-down">{movie.num_of_dislikes}</i>
-          <i className="fa fa-eye">{movie.visit_count}</i>
+        <div className="bottom-part col-md-12">
+          <i style={likedStyle} onClick={() => handleLike()} className="fa fa-thumbs-up col-md-2">{movie.num_of_likes}</i>
+          <i style={dislikedStyle} onClick={() => handleDislike()} className="fa fa-thumbs-down col-md-2">{movie.num_of_dislikes}</i>
+          <i className="fa fa-eye col-md-2">{movie.visit_count}</i>
+          <i onClick={() => handleAddToWatchList()} style={watchListFlagStyle} className={movie.is_in_watch_list ? "fa fa-minus" : "fa fa-plus"}></i>
         </div>
       </div>
     </div>
