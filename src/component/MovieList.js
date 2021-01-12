@@ -10,6 +10,7 @@ import Paginator from './Paginator';
 import '../styles/scss/movieList.scss'
 import debounce from 'lodash.debounce';
 import { DropdownButton, Dropdown } from 'react-bootstrap'
+import PopularMovies from './PopularMovies';
 
 const MovieList = () => {
     const [filterValue, setFilterValue] = useState('None')
@@ -68,7 +69,7 @@ const MovieList = () => {
 
     return (
         <div className="row">
-            <div className="col-md-12">
+            <div className="col-md-9">
                 <div className="row">
                     <div className="search-container col-md-4">
                         <input value={value} onChange={handleChange} placeholder="Search..." type="text" />
@@ -87,13 +88,18 @@ const MovieList = () => {
                         </DropdownButton>
                     </div>
                 </div>
-                <div className="col">
+                <div className="col-md-12">
                     {all.data && all.data.map(movie => (
                         <MovieCard movie={movie} key={movie.id} />
                     ))}
                 </div>
             </div>
+            <div className="col-md-3">
+                <PopularMovies/>
+            </div>
+            <div className="col-md-8">
             <Paginator length={all.length || 0} changePage={changePage} />
+            </div>
         </div>
     )
 }
