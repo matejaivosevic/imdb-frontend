@@ -26,8 +26,8 @@ const WatchList = () => {
                 <div className="row">
                 </div>
                 <div className="col">
-                    {list && list.map(movie => (
-                        <MovieCard movie={movie.movie} key={movie.movie_id} />
+                    {list && list.map(({ movie, movie_id }) => (
+                        <MovieCard movie={movie} key={movie_id} />
                     ))}
                 </div>
             </div>

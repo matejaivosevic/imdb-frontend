@@ -11,8 +11,6 @@ const PopularMovies = () => {
         all: state.movie.all
     }))
 
-    console.log(all)
-
     return (
         <div className="popular-movies-container">
             <h3>Popular movies</h3>
