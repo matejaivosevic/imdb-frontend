@@ -1,7 +1,7 @@
 import { call, put } from 'redux-saga/effects';
 
 import { movieService } from '../../services/MovieService';
-import { setAllComments, setComment, setMovie, setMovieAfterAddToList, setMovies, setMoviesAfterAddToList, setMoviesOnLike, setPopular, setSignleMovieOnLike, setWatchList } from '../actions/MovieActions';
+import { setAllComments, setComment, setMovie, setMovieAfterAddToList, setMovies, setMoviesAfterAddToList, setMoviesOnLike, setPopular, setRelated, setSignleMovieOnLike, setWatchList } from '../actions/MovieActions';
 
 export function* moviesGet(payload) {
   try {
@@ -25,6 +25,15 @@ export function* popularGet() {
   try {
     const { data } = yield call(movieService.getPopular);
     yield put(setPopular(data));
+  } catch (error) {
+    console.log({ error }); /*eslint-disable-line*/
+  }
+}
+
+export function* relatedGet(payload) {
+  try {
+    const { data } = yield call(movieService.getRelated, payload.payload);
+    yield put(setRelated(data));
   } catch (error) {
     console.log({ error }); /*eslint-disable-line*/
   }

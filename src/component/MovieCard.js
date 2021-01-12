@@ -26,7 +26,6 @@ const MovieCard = ({ movie }) => {
   }
 
   const handleMovieClick = () => {
-    dispatch(visitMovie(movie.id))
     history.push(`${ROUTES.MOVIE}/${movie.id}`)
   }
 

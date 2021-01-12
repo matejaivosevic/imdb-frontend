@@ -16,7 +16,7 @@ const PopularMovies = () => {
             <h3>Popular movies</h3>
             <div className="col-md-12 movies">
                 {all.popular && all.popular.map((movie, i) => (
-                    <h5 onClick={() => history.push(`${ROUTES.MOVIE}/${movie.id}`)}>{i+1}. {movie.title}</h5>
+                    <h5 key={movie.id} onClick={() => history.push(`${ROUTES.MOVIE}/${movie.id}`)}>{i+1}. {movie.title}</h5>
                 ))}
             </div>
         </div>
