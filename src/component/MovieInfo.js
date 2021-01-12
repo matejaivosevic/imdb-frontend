@@ -102,7 +102,7 @@ const MovieInfo = () => {
                         </div>
                     </div>
                     <div className="related">
-                        <RelatedMovies />
+                        <RelatedMovies id={id}/>
                     </div>
                 </div>
             </div>

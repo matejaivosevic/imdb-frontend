@@ -40,3 +40,8 @@ export const SET_POPULAR = 'SET_POPULAR'
 
 export const GET_RELATED = 'GET_RELATED'
 export const SET_RELATED = 'SET_RELATED'
+
+export const CREATE_MOVIE = 'CREATE_MOVIE'
+
+export const GET_GENRES = 'GET_GENRES'
+export const SET_GENRES = 'SET_GENRES'

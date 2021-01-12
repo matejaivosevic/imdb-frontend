@@ -30,3 +30,17 @@ export const SignupSchema = Yup.object().shape({
     .max(50, 'Too Long!')
     .required('Required')
 })
+
+export const MovieSchema = Yup.object().shape({
+    title: Yup.string()
+      .min(2, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required'),
+    description: Yup.string()
+      .min(2, 'Too Short!')
+      .max(500, 'Too Long!')
+      .required('Required'),
+    imageUrl: Yup.string()
+    .required('Required')
+  })
+  
