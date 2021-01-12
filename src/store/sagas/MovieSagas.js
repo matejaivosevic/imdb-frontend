@@ -23,7 +23,6 @@ export function* movieLike(payload) {
 
 export function* commentAdd(payload) {
   try {
-    console.log(payload)
     const { data } = yield call(movieService.createComment, payload);
     yield put(setComment(data));
   } catch (error) {

@@ -75,8 +75,8 @@ const MovieInfo = () => {
                 <div className="comments-section col-md-7">
                     <CommentForm addComment={handleAddComment} />
                     <div className="comments">
-                        {movie && movie.comments.map((comment, i) => (
-                            <Comment comment={comment} key={i}/>
+                        {movie && movie.comments.map(comment => (
+                            <Comment comment={comment} key={comment.user.username+comment.timestamp}/>
                         ))}
                     </div>
                     <button onClick={() => handleShowAll()} style={showBtnStyle} className="show-all-button">Show all</button>
